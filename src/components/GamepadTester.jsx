@@ -71,7 +71,7 @@ function GamepadTester() {
             <h3>Tentang Gamepad Tester</h3>
             <p>
               Tool ini menampilkan status gamepad Anda, input button, joystick,
-              dan fitur lainnya yang dapat dilaporkan oleh HTML5 Gamepad API.
+              dan fitur lainnya yang dapat dilaporkan oleh DN GAMEPAD TESTER.
               Tool ini juga menyediakan kontrol vibration dan berguna untuk
               debugging drifting joycon, controller rusak, hardware eksperimental, dan lainnya.
             </p>

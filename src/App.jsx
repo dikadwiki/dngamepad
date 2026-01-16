@@ -7,7 +7,7 @@ function App() {
     <div className="app">
       <header className="header">
         <h1>DN GAMEPAD TESTER</h1>
-        <p>Test dan debug controller Anda dengan HTML5 Gamepad API</p>
+        <p>Test dan debug controller Anda dengan DN GAMEPAD TESTER</p>
       </header>
       <main className="main">
         <GamepadTester />
