@@ -4,13 +4,12 @@ Website untuk testing dan debugging gamepad/controller menggunakan React dan HTM
 
 ## Fitur
 
-- ✅ Deteksi gamepad yang terhubung secara real-time
-- ✅ Tampilan status semua button (pressed/touched/released)
-- ✅ Visualisasi joystick/analog stick dengan deadzone detection
-- ✅ Kontrol vibration (jika didukung oleh gamepad)
-- ✅ Informasi detail gamepad (ID, mapping, jumlah button/axes)
-- ✅ UI modern dan responsive
-- ✅ Support multiple gamepad
+- Deteksi gamepad yang terhubung secara real-time
+- Tampilan status semua button (pressed/touched/released)
+- Visualisasi joystick/analog stick dengan deadzone detection
+- Kontrol vibration (jika didukung oleh gamepad)
+- Informasi detail gamepad (ID, mapping, jumlah button/axes)
+- UI modern dan responsive
 
 ## Teknologi
 
@@ -44,18 +43,12 @@ File hasil build akan berada di folder `dist/`
 
 ## Cara Menggunakan
 
-1. Hubungkan gamepad/controller ke komputer Anda (via USB atau Bluetooth)
+1. Hubungkan gamepad/controller ke komputer Anda
 2. Buka website gamepad tester
 3. Tekan tombol apa saja pada gamepad untuk mengaktifkan
-4. Website akan menampilkan:
-   - Informasi gamepad (ID, mapping, dll)
-   - Status semua button secara real-time
-   - Visualisasi pergerakan joystick
-   - Kontrol vibration (jika didukung)
 
 ## Catatan
 
-- Gamepad API memerlukan interaksi user terlebih dahulu sebelum dapat digunakan
 - Pastikan browser Anda mendukung HTML5 Gamepad API (Chrome, Firefox, Edge)
 - Beberapa fitur seperti vibration mungkin tidak didukung oleh semua gamepad
 
