@@ -13,7 +13,7 @@ function App() {
         <GamepadTester />
       </main>
       <footer className="footer">
-        <p>© 2024 Gamepad Tester - Versi 1.0.0</p>
+        <p>© 2026 DN Gamepad Tester - Versi 1.0.0</p>
       </footer>
     </div>
   )
