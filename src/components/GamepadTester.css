@@ -1,0 +1,272 @@
+.gamepad-tester {
+  background: var(--bg-light);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: var(--shadow-lg);
+  min-height: 500px;
+  animation: slideUp 0.5s ease-out;
+}
+
+/* Modern Animated Waiting State */
+.no-gamepad {
+  text-align: center;
+  padding: 3rem 1rem;
+  animation: fadeIn 0.8s ease-out;
+}
+
+.no-gamepad-icon {
+  font-size: 6rem;
+  margin-bottom: 1.5rem;
+  animation: pulse 2s ease-in-out infinite;
+  display: inline-block;
+  filter: drop-shadow(0 10px 20px rgba(102, 126, 234, 0.3));
+}
+
+.no-gamepad h2 {
+  color: var(--text-dark);
+  margin-bottom: 1rem;
+  font-size: 2.2rem;
+  font-weight: 700;
+  animation: slideUp 0.6s ease-out 0.2s both;
+}
+
+.no-gamepad p {
+  color: #666;
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  font-weight: 500;
+  animation: slideUp 0.6s ease-out 0.3s both;
+  position: relative;
+}
+
+/* Animated Loading Dots */
+.no-gamepad p::after {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  margin-left: 8px;
+  background: var(--primary-color);
+  border-radius: 50%;
+  animation: loadingDots 1.4s infinite;
+}
+
+.no-gamepad p::before {
+  content: '';
+  position: absolute;
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  margin-left: 4px;
+  background: var(--primary-color);
+  border-radius: 50%;
+  animation: loadingDots 1.4s infinite 0.2s;
+}
+
+.info-box {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(240, 147, 251, 0.05) 100%);
+  border: 2px solid rgba(102, 126, 234, 0.2);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: left;
+  max-width: 800px;
+  margin: 0 auto;
+  color: var(--text-dark);
+  animation: slideUp 0.6s ease-out 0.4s both, float 3s ease-in-out infinite 1s;
+  position: relative;
+  overflow: hidden;
+}
+
+.info-box::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, var(--primary-color), var(--accent-color), var(--primary-color));
+  background-size: 200% 200%;
+  border-radius: 12px;
+  z-index: -1;
+  opacity: 0;
+  animation: gradientShift 3s ease infinite, glow 2s ease-in-out infinite;
+}
+
+.info-box:hover::before {
+  opacity: 0.3;
+}
+
+.info-box h3 {
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+
+.info-box p {
+  line-height: 1.8;
+  color: #555;
+  font-size: 1rem;
+}
+
+/* Gamepad Selector with Animations */
+.gamepad-selector {
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--border-color);
+  animation: slideUp 0.5s ease-out 0.2s both;
+}
+
+.gamepad-selector h3 {
+  color: var(--text-dark);
+  margin-bottom: 1rem;
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+
+.gamepad-button {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  border: none;
+  padding: 0.875rem 1.75rem;
+  margin: 0.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all var(--transition-normal) ease;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.gamepad-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.gamepad-button:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.gamepad-button:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+.gamepad-button:active {
+  transform: translateY(-1px) scale(0.98);
+}
+
+.gamepad-button.active {
+  background: linear-gradient(135deg, var(--success-color), #66bb6a);
+  box-shadow: 0 0 0 4px rgba(76, 175, 80, 0.3), 0 8px 25px rgba(76, 175, 80, 0.4);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Gamepad Info Section */
+.gamepad-info {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.controls-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.buttons-section,
+.joysticks-section,
+.vibration-section {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: all var(--transition-normal) ease;
+  animation: slideUp 0.5s ease-out both;
+}
+
+.buttons-section {
+  animation-delay: 0.1s;
+}
+
+.joysticks-section {
+  animation-delay: 0.2s;
+  margin-top: 2rem;
+  /* Add spacing above Joystick Analysis */
+}
+
+.vibration-section {
+  animation-delay: 0.3s;
+  margin-top: 2rem;
+  /* Add spacing above Vibration */
+}
+
+.buttons-section:hover,
+.joysticks-section:hover,
+.vibration-section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.buttons-section h3,
+.joysticks-section h3,
+.vibration-section h3 {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--border-color);
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .gamepad-tester {
+    padding: 1rem;
+    border-radius: 12px;
+  }
+
+  .no-gamepad-icon {
+    font-size: 4rem;
+  }
+
+  .no-gamepad h2 {
+    font-size: 1.8rem;
+  }
+
+  .no-gamepad p {
+    font-size: 1rem;
+  }
+
+  .info-box {
+    padding: 1.5rem;
+  }
+
+  .controls-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .gamepad-button {
+    display: block;
+    width: 100%;
+    margin: 0.5rem 0;
+  }
+
+  .buttons-section,
+  .joysticks-section,
+  .vibration-section {
+    padding: 1.25rem;
+  }
+}
