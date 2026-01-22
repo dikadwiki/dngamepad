@@ -9,14 +9,29 @@ function JoystickDisplay({ gamepad }) {
   useEffect(() => {
     if (!gamepad) return
 
+    let animationFrameId
+
     const updateAxes = () => {
-      setAxes([...gamepad.axes])
+      // Read gamepad data directly from navigator for real-time updates
+      const gamepads = navigator.getGamepads()
+      const currentGamepad = gamepads[gamepad.index]
+      
+      if (currentGamepad) {
+        setAxes([...currentGamepad.axes])
+      }
+      
+      // Schedule next update synchronized with browser refresh rate
+      animationFrameId = requestAnimationFrame(updateAxes)
     }
 
-    const interval = setInterval(updateAxes, 16) // ~60fps
-    updateAxes()
+    // Start the animation loop
+    animationFrameId = requestAnimationFrame(updateAxes)
 
-    return () => clearInterval(interval)
+    return () => {
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId)
+      }
+    }
   }, [gamepad])
 
   // Calculate circularity error
@@ -31,8 +46,14 @@ function JoystickDisplay({ gamepad }) {
     // Calculate actual distance from center
     const actualDistance = Math.sqrt(x * x + y * y)
 
-    // For a perfect circle, when moving the stick, the distance should be consistent
-    // We expect the distance to be close to 1.0 when fully pushed
+    // Only measure circularity when stick is pushed beyond 80% to avoid false errors
+    // When stick is partially pushed, we don't expect it to be at radius 1.0
+    if (actualDistance < 0.8) {
+      return null
+    }
+
+    // For a perfect circle, when moving the stick at full extension,
+    // the distance should be consistent and close to 1.0
     // Error is the deviation from the expected radius
     const expectedDistance = 1.0
     const error = Math.abs(actualDistance - expectedDistance)
@@ -86,29 +107,29 @@ function JoystickDisplay({ gamepad }) {
   const renderJoystick = (xValue, yValue, index, label) => {
     const stickSize = 200
     const stickRadius = 15
-    const deadzone = 0.1
+    const activeThreshold = 0.05 // Small threshold for "active" visual state
 
     // Handle undefined/null values
     const xVal = xValue ?? 0
     const yVal = yValue ?? 0
 
-    const normalize = (value) => {
+    // No deadzone for visual display - show raw movement
+    const clamp = (value) => {
       if (value === undefined || value === null) return 0
-      if (Math.abs(value) < deadzone) return 0
       return Math.max(-1, Math.min(1, value))
     }
 
-    const nX = normalize(xVal)
-    const nY = normalize(yVal)
+    const nX = clamp(xVal)
+    const nY = clamp(yVal)
 
     const centerX = stickSize / 2
     const centerY = stickSize / 2
     const maxDistance = stickSize / 2 - stickRadius - 5
 
     const x = centerX + (nX * maxDistance)
-    const y = centerY + (nY * maxDistance) // Don't invert Y - positive is down, negative is up
+    const y = centerY + (nY * maxDistance) // Direct mapping - positive Y is down, negative Y is up
 
-    const isActive = Math.abs(nX) > deadzone || Math.abs(nY) > deadzone
+    const isActive = Math.abs(nX) > activeThreshold || Math.abs(nY) > activeThreshold
 
     // Get circularity stats for this stick
     const stickError = index === 0 ? leftStickError : rightStickError
